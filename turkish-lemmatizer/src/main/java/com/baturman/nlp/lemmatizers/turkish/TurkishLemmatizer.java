@@ -42,6 +42,7 @@ public class TurkishLemmatizer {
 	private static final int UNLU_DUSMESI_KONTROLU = 3; // oğul oğlum olayı
 	private static final int UNSUZ_DUSMESI_KONTROLU = 4; // küçücük, ufacık, yükselmek, alçalmak
 	private static final int PEKISTIRME_KONTROLU = 5; // sapasağlam -> sağlam
+	private static final int UNLU_DEGISIMI = 6; // sana -> sen, bana -> ben
 
 	private ArrayList<String> candidates;
 	private Stack<Tracer> trace;
@@ -110,12 +111,18 @@ public class TurkishLemmatizer {
 	@SuppressWarnings("unchecked")
 	public String lemmatize(String word) throws NotAcceptableCharacterException, StringIndexOutOfBoundsException{
 		
+		// Initialize trace
+		trace = new Stack<Tracer>();
+		candidates = new ArrayList<String>();
+		
 		// Handle ÜNLÜ DEĞİŞİMİ. Only seen in sana and bana
 		if (word.equalsIgnoreCase("sana")){
+			trace.push(new Tracer(TurkishLemmatizer.UNLU_DEGISIMI, true));
 			return "sen";
 		}
 		
 		if (word.equalsIgnoreCase("bana")){
+			trace.push(new Tracer(TurkishLemmatizer.UNLU_DEGISIMI, true));
 			return "ben";
 		}
 		
@@ -127,10 +134,6 @@ public class TurkishLemmatizer {
 				throw new NotAcceptableCharacterException(letter, word, i);	
 			}
 		}
-
-		// Initialize trace stack
-		trace = new Stack<Tracer>();
-		candidates = new ArrayList<String>();
 
 		// Check word and load stem list depending on first two character
 		char firstCharacter = word.charAt(0);
