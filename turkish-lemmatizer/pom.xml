@@ -3,7 +3,7 @@
 
 	<groupId>com.baturman.nlp.lemmatizers</groupId>
 	<artifactId>turkish-lemmatizer</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>turkish-lemmatizer</name>
@@ -19,7 +19,7 @@
 		<connection>scm:git:git@github.com:baturman/turkish-lemmatizer.git</connection>
 		<developerConnection>scm:git:git@github.com:baturman/turkish-lemmatizer.git</developerConnection>
 		<url>https://github.com/baturman/turkish-lemmatizer</url>
-	  <tag>HEAD</tag>
+	  <tag>v1.0.0</tag>
   </scm>
 
 
