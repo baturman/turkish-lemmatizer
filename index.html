@@ -46,43 +46,17 @@
 
 <p>In morphologically complex languages such as Turkish, the stemming process is a difficult task. Therefore, usage of a lemmatizer is a wise solution. The approach that we take during lemmatization process is to use a predefined stem list and pick the one that has the longest matched from the beginning of word.</p>
 
-<h3>
-<a name="lemmatization-in-turkish-language" class="anchor" href="#lemmatization-in-turkish-language"><span class="octicon octicon-link"></span></a>Lemmatization in Turkish Language</h3>
-
-<p>Turkish language is morphologically complex language that the stem of a word can not be obtained by following a set of rules. In natural language processing, the stem of a word can be determined by the meaning they have. </p>
-
-<p>For example, the following words</p>
-
-<ul>
-<li>göz (eye)</li>
-<li>gözlük (eyeglasses)</li>
-<li>gözlükçü (optician)</li>
-<li>gözlem (observation) </li>
-</ul><p>have the root form "göz". But if you reduce them to "göz", you will lose initial meaning of the words. With this approach, lemmatizer seems better option to find stem of turkish words.</p>
-
 <p>Turkish Lemmatizer uses "Longest Matched Stemming" algorithm. But besides, it handles some of the <a href="https://github.com/baturman/turkish-lemmatizer/wiki/Turkish-Word-Formation">turkish word formation</a> that is commonly seen in turkish words. </p>
 
-<blockquote>
-<p>TODO: English Translation required</p>
-</blockquote>
-
-<p>Those are:</p>
-
-<ol>
-<li>Ünsüz Yumuşaması </li>
-<li>Ünlü Daralması</li>
-<li>Ünlü Düşmesi</li>
-<li>Ünsüz Düşmesi</li>
-<li>Pekiştirme</li>
-</ol><p>In this lemmatization library, lemmatization process performance totally related with the supplied stem list.</p>
+<p>In this lemmatization library, lemmatization process performance totally related with the supplied stem list.</p>
 
 <h3>
 <a name="obtaining-library" class="anchor" href="#obtaining-library"><span class="octicon octicon-link"></span></a>Obtaining Library</h3>
 
 <ul>
-<li>Click download buttons on top of the page.</li>
-<li>After you download, extract compressed file</li>
-<li>You will have directory structure similar to following:</li>
+<li>if you want to get source, you can get latest snapshot by clicking download buttons on top of the page.</li>
+<li>You can download a specific release from <a href="https://github.com/baturman/turkish-lemmatizer/releases">release section on github</a>.</li>
+<li>After you extract compressed file you will have directory structure similar to following:</li>
 </ul><pre><code>turkish-lemmatizer-v0.0.2/
 ├── lib
 │   └── turkish-lemmatizer-0.0.2.jar
@@ -96,75 +70,17 @@
 </ul><h3>
 <a name="lemmatizer-usage" class="anchor" href="#lemmatizer-usage"><span class="octicon octicon-link"></span></a>Lemmatizer Usage</h3>
 
-<p>Create a lemmatizer object:</p>
+<p>For usage please visit <a href="https://github.com/baturman/turkish-lemmatizer/wiki">wiki page</a>.</p>
 
-<div class="highlight highlight-java"><pre><span class="n">TurkishLemmatizer</span> <span class="n">tl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TurkishLemmatizer</span><span class="o">();</span>
-</pre></div>
+<h3>
+<a name="personal-request-from-developer" class="anchor" href="#personal-request-from-developer"><span class="octicon octicon-link"></span></a>Personal Request from developer</h3>
 
-<p>Use <code>java addStem(String stem);</code> method to add your stem list to lemmatizer.</p>
-
-<p>Complete Example:</p>
-
-<div class="highlight highlight-java"><pre><span class="n">TurkishLemmatizer</span> <span class="n">tl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TurkishLemmatizer</span><span class="o">();</span>
-<span class="k">try</span> <span class="o">{</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kitap"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kulak"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"ağaç"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"yemek"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kalp"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"çelenk"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"metot"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"hukuk"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"genç"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"et"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"bekle"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kal"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"özle"</span><span class="o">);</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NotAcceptableCharacterException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span>
-</pre></div>
-
-<p>After adding your stem list. You can use <code>tl.lemmatize(String word)</code> method to get stem of the word. However lemmatizer may return more than one stem for some particular word. That means, there might be more than one suitable stem found after checking word formation rules. If lemmatizer, didnt return the correct stem, you may get other candidates which you will probably find correct stem in the candidates. For example:</p>
-
-<div class="highlight highlight-java"><pre> <span class="n">TurkishLemmatizer</span> <span class="n">tl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TurkishLemmatizer</span><span class="o">();</span>
- <span class="k">try</span> <span class="o">{</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kitap"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kulak"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"ağaç"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"yemek"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kalp"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"çelenk"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"metot"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"hukuk"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"genç"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"et"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"bekle"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kal"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"özle"</span><span class="o">);</span>
-     <span class="n">tl</span><span class="o">.</span><span class="na">addStem</span><span class="o">(</span><span class="s">"kalp"</span><span class="o">);</span>
-
-     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tl</span><span class="o">.</span><span class="na">lemmatize</span><span class="o">(</span><span class="s">"kalbim"</span><span class="o">);</span>
-     <span class="n">String</span> <span class="o">[]</span> <span class="n">digerleri</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="na">getAllCandidates</span><span class="o">();</span>
-     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">digerleri</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
-         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)+</span> <span class="s">" "</span> <span class="o">+</span><span class="n">digerleri</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-     <span class="o">}</span>
- <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NotAcceptableCharacterException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
- <span class="o">}</span>
-</pre></div>
-
-<p>The following code piece will output:</p>
-
-<div class="highlight highlight-java"><pre> <span class="n">kal</span>
- <span class="mi">1</span> <span class="n">kal</span>
- <span class="mi">2</span> <span class="n">kalp</span>
-</pre></div>
+<p>If you use this library in a scientific project, please provide feedback. Such feedbacks can be used to improve algorithm used in the lemmatizer.</p>
 
 <h3>
 <a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
-<p>Having trouble with lemmatizer? you may email your problems to me baturman (at) gmail.com</p>
+<p>Having trouble with lemmatizer? you may email your problems to me baturman (at) gmail.com. If you find issue, please report to issues section in the github project.</p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/baturman">baturman</a></p>
