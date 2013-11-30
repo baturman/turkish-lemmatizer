@@ -44,7 +44,7 @@ public class TurkishLemmatizer {
 	private static final int PEKISTIRME_KONTROLU = 5; // sapasağlam -> sağlam
 
 	private ArrayList<String> candidates;
-	private Stack<Tracer> traceStack;
+	private Stack<Tracer> trace;
 
 	private boolean stemFound = false;
 
@@ -129,7 +129,7 @@ public class TurkishLemmatizer {
 		}
 
 		// Initialize trace stack
-		traceStack = new Stack<Tracer>();
+		trace = new Stack<Tracer>();
 		candidates = new ArrayList<String>();
 
 		// Check word and load stem list depending on first two character
@@ -180,10 +180,10 @@ public class TurkishLemmatizer {
 		candidate = findLongestMatchedStem(list, word, TurkishLemmatizer.UNSUZ_YUMUSAMA_KONTROLU);
 
 		if (candidate.length() > 0){
-			traceStack.push(new Tracer(TurkishLemmatizer.UNSUZ_YUMUSAMA_KONTROLU, true));
+			trace.push(new Tracer(TurkishLemmatizer.UNSUZ_YUMUSAMA_KONTROLU, true));
 			candidates.add(candidate);
 		}else{
-			traceStack.push(new Tracer(TurkishLemmatizer.UNSUZ_YUMUSAMA_KONTROLU, false));
+			trace.push(new Tracer(TurkishLemmatizer.UNSUZ_YUMUSAMA_KONTROLU, false));
 		}
 
 
@@ -208,10 +208,10 @@ public class TurkishLemmatizer {
 
 		candidate = findLongestMatchedStem(list, word, TurkishLemmatizer.UNLU_DARALMASI_KONTROLU);
 		if (candidate.length() > 0){
-			traceStack.push(new Tracer(TurkishLemmatizer.UNLU_DARALMASI_KONTROLU, true));
+			trace.push(new Tracer(TurkishLemmatizer.UNLU_DARALMASI_KONTROLU, true));
 			candidates.add(candidate);
 		}else{
-			traceStack.push(new Tracer(TurkishLemmatizer.UNLU_DARALMASI_KONTROLU, false));
+			trace.push(new Tracer(TurkishLemmatizer.UNLU_DARALMASI_KONTROLU, false));
 		}
 
 		/**
@@ -227,10 +227,10 @@ public class TurkishLemmatizer {
 		 */
 		candidate = findLongestMatchedStem(list, word, TurkishLemmatizer.UNLU_DUSMESI_KONTROLU);
 		if (candidate.length() > 0){
-			traceStack.push(new Tracer(TurkishLemmatizer.UNLU_DUSMESI_KONTROLU, true));
+			trace.push(new Tracer(TurkishLemmatizer.UNLU_DUSMESI_KONTROLU, true));
 			candidates.add(candidate);
 		}else{
-			traceStack.push(new Tracer(TurkishLemmatizer.UNLU_DUSMESI_KONTROLU, false));
+			trace.push(new Tracer(TurkishLemmatizer.UNLU_DUSMESI_KONTROLU, false));
 		}
 
 		/**
@@ -248,10 +248,10 @@ public class TurkishLemmatizer {
 		 */
 		candidate = findLongestMatchedStem(list, word, TurkishLemmatizer.UNSUZ_DUSMESI_KONTROLU);
 		if (candidate.length() > 0){
-			traceStack.push(new Tracer(TurkishLemmatizer.UNSUZ_DUSMESI_KONTROLU, true));
+			trace.push(new Tracer(TurkishLemmatizer.UNSUZ_DUSMESI_KONTROLU, true));
 			candidates.add(candidate);
 		}else{
-			traceStack.push(new Tracer(TurkishLemmatizer.UNSUZ_DUSMESI_KONTROLU, false));
+			trace.push(new Tracer(TurkishLemmatizer.UNSUZ_DUSMESI_KONTROLU, false));
 		}
 
 		/**
@@ -266,10 +266,10 @@ public class TurkishLemmatizer {
 		 */
 		candidate = findLongestMatchedStem(list, word, TurkishLemmatizer.PEKISTIRME_KONTROLU);
 		if (candidate.length() > 0){
-			traceStack.push(new Tracer(TurkishLemmatizer.PEKISTIRME_KONTROLU, true));
+			trace.push(new Tracer(TurkishLemmatizer.PEKISTIRME_KONTROLU, true));
 			candidates.add(candidate);
 		}else{
-			traceStack.push(new Tracer(TurkishLemmatizer.PEKISTIRME_KONTROLU, false));
+			trace.push(new Tracer(TurkishLemmatizer.PEKISTIRME_KONTROLU, false));
 		}
 		
 		
@@ -295,11 +295,11 @@ public class TurkishLemmatizer {
 		candidate = findLongestMatchedStem(list, word, TurkishLemmatizer.EN_UZUN_KOK_KONTROLU);
 
 		if (candidate.length() > 0){
-			traceStack.push(new Tracer(TurkishLemmatizer.EN_UZUN_KOK_KONTROLU, true));
+			trace.push(new Tracer(TurkishLemmatizer.EN_UZUN_KOK_KONTROLU, true));
 			candidates.add(candidate);
 			return candidate;
 		}else{
-			traceStack.push(new Tracer(TurkishLemmatizer.EN_UZUN_KOK_KONTROLU, false));
+			trace.push(new Tracer(TurkishLemmatizer.EN_UZUN_KOK_KONTROLU, false));
 		}
 		
 		return longest.length() < 1 ? word:longest;
@@ -432,10 +432,10 @@ public class TurkishLemmatizer {
 	 * 
 	 * @return trace stack string.
 	 */
-	public String getTraceExplanation(){
-		String message = "Trace Stack: ";
-		while(!traceStack.isEmpty()){
-			Tracer t = traceStack.pop();
+	public String getTrace(){
+		String message = "Trace: ";
+		while(!trace.isEmpty()){
+			Tracer t = trace.pop();
 			message += "[" + t.getControlName() + "=" + t.getResult() + "] <- ";
 		}
 		return message;

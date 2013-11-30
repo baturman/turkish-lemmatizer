@@ -24,7 +24,7 @@ package com.baturman.nlp.lemmatizers.turkish;
  * @author Baturman SEN
  *
  */
-public class Runner {
+public class Launcher {
 	public static void main(String[] args) {
 
 		TurkishLemmatizer tl = new TurkishLemmatizer();
@@ -91,7 +91,7 @@ public class Runner {
 					}
 				}
 				message +="\n";
-				message += tl.getTraceExplanation();
+				message += tl.getTrace();
 				System.out.println(message);
 				System.out.println();
 			}
