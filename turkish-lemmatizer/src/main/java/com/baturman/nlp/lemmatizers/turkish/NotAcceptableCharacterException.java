@@ -20,11 +20,10 @@ package com.baturman.nlp.lemmatizers.turkish;
 
 /**
  * 
- * Definition for {@link NotAcceptableCharacterException}.
+ * Exception thrown, if an unknown character is supplied.
  * 
  * @author Baturman SEN
  * 
- * TODO: this class should be revisited
  *
  */
 public class NotAcceptableCharacterException extends Exception{
