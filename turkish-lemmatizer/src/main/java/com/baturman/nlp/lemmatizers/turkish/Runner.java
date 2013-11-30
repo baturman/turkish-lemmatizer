@@ -70,12 +70,13 @@ public class Runner {
 			tl.addStem("sabır");
 			tl.addStem("kork");
 			tl.addStem("sen");
+			tl.addStem("bahçe");
 
 			String [] word = {"kitabım", "kulağım", "ağacımız", "yemeğe", "kalbim", "çelengi", "metodumuzu", "hukukun", "hukuğun", "gencecik", "ediliyor",
 					"bekliyor", "kalmıyor", "özlüyorum", "solluyorum", "solladım", "diyorum", "diyerek", "deyince", "yiyerek", "yedirdi", "oğlum", "gönlüm",
 					"küçüğüm", "neslimiz", "resminde", "resmi", "küçücük", "alçalmak", "yükselmek", "seyreldi", "seyrettim", "affetmek", "zannedersen", "sapasağlam",
 					"kıpkırmızı", "yemyeşil", "sarardım", "sapsarı", "karnından", "karındaş", "hastanelik", "başından", "başbakanın", "elazığlı", "koğuşunda", "sabrım",
-					"sabreden", "korktu", "sana"
+					"sabreden", "korktu", "sana", "bahçesi"
 			};
 			
 			for (int i = 0; i < word.length; i++) {
@@ -89,10 +90,10 @@ public class Runner {
 						message += list[j] + " ";
 					}
 				}
-				//message +="\n";
-				//message += tl.getTraceExplanation();
+				message +="\n";
+				message += tl.getTraceExplanation();
 				System.out.println(message);
-				//System.out.println();
+				System.out.println();
 			}
 
 		} catch (NotAcceptableCharacterException e) {
